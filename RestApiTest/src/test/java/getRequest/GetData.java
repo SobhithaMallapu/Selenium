@@ -13,34 +13,85 @@ import org.testng.annotations.Test;
 
 public class GetData {
 	
-	String api = "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22" ;
-	
 	@Test
-	public void testResponseCode()
+	public void testGetRequest()
 	{
-	int code = get(api).getStatusCode();
-	System.out.println("code: "+ code );
-	Assert.assertEquals(code,200);
 		
-	}
-	
-	@Test
-	public void testBody()
-	{
-		Long time = get(api).getTime();
-		System.out.println("ResposeTime "+ time);
-	}
-	
-	@Test
-	public void GetWeatherDetails()
-	{
-		RestAssured.baseURI = "http://restapi.demoqa.com/utilities/weather/city";
+		String api1 = "https://flobizhiring-57e6.restdb.io/rest/issues";
+		int code = get(api1).getStatusCode();
+		System.out.println("Status Code: " + code);
+		Assert.assertEquals(code, 200);
+		
+		RestAssured.baseURI = "https://flobizhiring-57e6.restdb.io/rest";
 		RequestSpecification httpRequest = RestAssured.given();
-		Response response= httpRequest.request(Method.GET,"/Hyderabad");
+		//setting header
+		httpRequest.header("Content-Type", "application/json");
+		httpRequest.header("x-apikey","5da6fb5d3cbe87164d4bb35d");
+		Response response= httpRequest.request(Method.GET,"/issues");
+		
+		String responseBody = response.getBody().asString();
+		System.out.println("response body: "+responseBody);
+	}
+	
+	@Test
+	public void testGetRequest2()
+	{
+		RestAssured.baseURI = "https://flobizhiring-57e6.restdb.io/rest/issues?id=588893fbf54b5f59000003ce";
+		RequestSpecification httpRequest = RestAssured.given();	
+		httpRequest.header("Content-Type", "application/json");
+		httpRequest.header("x-apikey","5da6fb5d3cbe87164d4bb35d");
+Response response= httpRequest.request(Method.GET,"/issues?id=588893fbf54b5f59000003ce");
+		
+		String responseBody = response.getBody().asString();
+		System.out.println("response body: "+responseBody);
+	}
+	
+	@Test
+	public void testPostRequest()
+	{
+		RestAssured.baseURI = "https://flobizhiring-57e6.restdb.io/rest";
+		RequestSpecification httpRequest = RestAssured.given();	
+		httpRequest.header("Content-Type", "application/json");
+		httpRequest.header("x-apikey","5da6fb5d3cbe87164d4bb35d");
+		httpRequest.header("content-type","application/json; charset=utf-8");
+		httpRequest.header("etag","W/\"a1-+4LB6vyLbTYsD7IEyiqUpctyLms\"");
+		Response response= httpRequest.request(Method.POST,"/issues");
 		
 		String responseBody = response.getBody().asString();
 		System.out.println("response body: "+responseBody);
 		
 	}
+	
+	
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

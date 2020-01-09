@@ -1,11 +1,12 @@
 import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 
 public class StaticDD {
-	public static void main(String [] args) throws InterruptedException
+	public static void main(String [] args) throws Exception
 	{
 	System.setProperty("webdriver.chrome.driver", "C:\\Users\\TatambariBaba\\Desktop\\chromedriver.exe");
 	WebDriver driver = new ChromeDriver();
@@ -17,7 +18,7 @@ public class StaticDD {
 	s.selectByValue("AED");	
 	
 	driver.findElement(By.id("divpaxinfo")).click();
-	Thread.sleep(2000L);
+	Thread.sleep(2000);
 	int i = 1;
 	while(i<4) {
 	driver.findElement(By.id("hrefIncAdt")).click();
@@ -28,13 +29,15 @@ public class StaticDD {
 	
 	// for dynamic drop downs
 	
-	Select a = new Select(driver.findElement(By.id("ctl00_mainContent_ddl_originStation1")).click());
+//	Select a = new Select(driver.findElement(By.id("ctl00_mainContent_ddl_originStation1")).click());
 	
-	a.selectByXpath("(//a[@value='BLR'])").click();
+	//a.selectByXpath("(//a[@value='BLR'])").click();
 	
-	Thread.sleep(2000l);
+	//Thread.sleep(2000l);
 	
-	a.selectByXpath("(//a[@value='AMD'])[2]").click();
+//	a.selectByXpath("(//a[@value='AMD'])[2]").click();
+	
+	driver.findElement(By.xpath("//div[@id='glsctl00_mainContent_ddl_destinationStation1_CTNR'] //a[@value='MAA']")).click();
 	
 	
 
