@@ -1,15 +1,23 @@
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.reporters.Files;
+
 
 public class Demo {
-	public static  void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static  void main(String[] args)
+	{
 //Selenium code
 		//create driver object for chrome browser
 		//
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\TatambariBaba\\Desktop\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\TatambariBaba\\Documents\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		driver.get("http://google.com");
 		System.out.println(driver.getTitle());
@@ -22,11 +30,13 @@ public class Demo {
 		
 		driver.get("https://login.salesforce.com/?locale=in");
 		
-		driver.findElement(By.xpath("Input[@name='Login']")).sendKeys("Sobhitha");
+		driver.findElement(By.id("username")).sendKeys("Sobhitha");
 		
 		driver.findElement(By.name("pw")).sendKeys("abcdef");
 		
 		driver.findElement(By.xpath("//*[@id=\'Login\']")).click();
+		
+		getScreenshot(driver);
 		
 		/*driver.get("http://facebook.com");
 		
@@ -36,5 +46,17 @@ public class Demo {
 		
 		driver.findElement(By.xpath("//*[@id=\'login_form\']/table/tbody/tr[3]/td[2]/div/a")).click();*/
 		
-}
+	}
+	
+	public static void getScreenshot(WebDriver driver)
+	{
+		driver.get("http://google.com");
+		
+		File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		File.copyFile(src,new File("C:\\Users\\TatambariBaba\\Desktop\\Selnese\\screenshot.png"));
+		
+		
+		
+		
+	}
 }	
