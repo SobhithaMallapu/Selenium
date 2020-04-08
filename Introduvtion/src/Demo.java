@@ -53,7 +53,7 @@ public class Demo {
 		driver.get("http://google.com");
 		
 		File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		File.copyFile(src,new File("C:\\Users\\TatambariBaba\\Desktop\\Selnese\\screenshot.png"));
+		//File.copyFile(src,new File("C:\\Users\\TatambariBaba\\Desktop\\Selnese\\screenshot.png"));
 		
 		
 		
