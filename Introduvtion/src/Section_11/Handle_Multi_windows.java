@@ -33,6 +33,9 @@ public class Handle_Multi_windows {
 		driver.switchTo().window(childId);
 		System.out.println(driver.getTitle());
 		
+		driver.switchTo().window(parentId);
+		System.out.println(driver.getTitle());
+		
 
 	}
 
