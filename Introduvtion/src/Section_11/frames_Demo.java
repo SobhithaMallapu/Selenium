@@ -17,7 +17,7 @@ public class frames_Demo {
 		
 		driver.get("https://jqueryui.com/droppable/");
 		
-		System.out.println(driver.findElement(By.tagName("iframe")).getSize());
+		System.out.println(driver.findElements(By.tagName("iframe")).size());
 		
 		
 		driver.switchTo().frame(driver.findElement(By.cssSelector("iframe[class='demo-frame']")));
@@ -32,7 +32,9 @@ public class frames_Demo {
 		
 		a.dragAndDrop(source, target).build().perform();
 		
-		driver.close();
+		driver.switchTo().defaultContent();
+		
+		//driver.close();
 		
 		
 	}
